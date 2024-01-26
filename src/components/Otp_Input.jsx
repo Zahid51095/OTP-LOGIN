@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 // eslint-disable-next-line react/prop-types
 const OtpInput = ({length = 4, onOtpSubmit =() =>{}}) => {
     const [otp, setOtp] = useState(new Array(length).fill(""));
+
     const inputRefs = useRef([]);
 
     useEffect(() => {
@@ -19,6 +20,7 @@ const OtpInput = ({length = 4, onOtpSubmit =() =>{}}) => {
         if(isNaN(value)) return;
 
         const newOtp = [...otp];
+
         // allow only one input
         newOtp[index] = value.substring(value.length - 1);
         setOtp(newOtp);
@@ -49,6 +51,7 @@ const OtpInput = ({length = 4, onOtpSubmit =() =>{}}) => {
             index > 0 &&
             inputRefs.current[index - 1]
         ) {
+            // move focus to the previous input field on backspace
             inputRefs.current[index - 1].focus();
         }
     };
